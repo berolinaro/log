@@ -1,6 +1,7 @@
 cc_library_shared {
     name: "libboost_log",
     vendor_available: true,
+    rtti: true,
     srcs: [
         "src/text_ostream_backend.cpp",
         "src/threadsafe_queue.cpp",
@@ -59,12 +60,38 @@ cc_library_shared {
     export_include_dirs: ["include"],
     header_libs: [
         "libboost_predef",
+        "libboost_config",
+        "libboost_integer",
+	"libboost_container_hash",
+	"libboost_detail",
+	"libboost_smart_ptr",
+        "libboost_assert",
+        "libboost_static_assert",
+        "libboost_type_index",
+        "libboost_parameter",
+        "libboost_preprocessor",
+        "libboost_type_traits",
+        "libboost_utility",
+        "libboost_move",
+        "libboost_core",
+        "libboost_throw_exception",
+        "libboost_mpl",
+        "libboost_interprocess",
+        "libboost_bind",
+        "libboost_static_assert",
+    ],
+    shared_libs: [
+        "libboost_system",
+        "libboost_filesystem",
+        "libboost_thread",
+        "libboost_locale",
     ],
     target: {
         android: {
             cflags: [
                 "-fPIC",
                 "-DPIC",
+                "-Wno-error=non-virtual-destructor",
             ],
         },
         not_windows: {
